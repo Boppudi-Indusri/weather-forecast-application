@@ -88,3 +88,38 @@ function displayForecast(data) {
     forecastContainer.innerHTML += card;
   });
 }
+
+// Recent cities dropdown
+function updateRecentCities(city) {
+  let cities = JSON.parse(localStorage.getItem("recentCities")) || [];
+  cities = [city, ...cities.filter(c => c !== city)].slice(0, 5); // keep unique, last 5
+  localStorage.setItem("recentCities", JSON.stringify(cities));
+  renderRecentCities();
+}
+
+function renderRecentCities() {
+  const cities = JSON.parse(localStorage.getItem("recentCities")) || [];
+  recentCitiesDropdown.innerHTML = `<option value="">Select a city</option>`;
+  cities.forEach(city => {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    recentCitiesDropdown.appendChild(option);
+  });
+}
+
+// Event Listeners
+searchBtn.addEventListener("click", () => {
+  const city = cityInput.value.trim();
+  if (city) getWeatherByCity(city);
+});
+
+locationBtn.addEventListener("click", getWeatherByLocation);
+
+recentCitiesDropdown.addEventListener("change", e => {
+  const city = e.target.value;
+  if (city) getWeatherByCity(city);
+});
+
+// Initial render
+renderRecentCities();
