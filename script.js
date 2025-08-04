@@ -28,3 +28,27 @@ async function getWeatherByCity(city) {
     forecastContainer.innerHTML = "";
   }
 }
+// Fetch weather using geolocation
+function getWeatherByLocation() {
+  navigator.geolocation.getCurrentPosition(
+    async position => {
+      const { latitude, longitude } = position.coords;
+      const weatherRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+      );
+      const weatherData = await weatherRes.json();
+
+      const forecastRes = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+      );
+      const forecastData = await forecastRes.json();
+
+      displayWeather(weatherData);
+      displayForecast(forecastData);
+      updateRecentCities(weatherData.name);
+    },
+    error => {
+      alert("Location access denied or unavailable.");
+    }
+  );
+}
