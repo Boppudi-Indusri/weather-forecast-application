@@ -1,5 +1,5 @@
 # weather-forecast-application
-Author : Boppudi Indu Sri
+
 
 # 🌦️ Weather Forecast Application
 
@@ -64,3 +64,5 @@ Ensure your API key is valid and not expired
 Geolocation feature may require browser permission
 
 ![alt text](image-1.png)
+
+Author : Boppudi Indu Sri
