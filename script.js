@@ -66,3 +66,25 @@ function displayWeather(data) {
   `;
   weatherInfo.innerHTML = html;
 }
+
+// Display 5-day forecast (1 entry per day at 12:00 PM)
+function displayForecast(data) {
+  forecastContainer.innerHTML = "";
+
+  const daily = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+
+  daily.forEach(day => {
+    const date = new Date(day.dt_txt);
+    const icon = day.weather[0].icon;
+
+    const card = `
+      <div class="bg-blue-100 p-3 rounded-xl text-center">
+        <p class="font-medium">${date.toDateString().slice(0, 10)}</p>
+        <img class="mx-auto" src="https://openweathermap.org/img/wn/${icon}.png" alt="${day.weather[0].description}">
+        <p>${day.main.temp}°C</p>
+        <p class="text-sm capitalize">${day.weather[0].description}</p>
+      </div>
+    `;
+    forecastContainer.innerHTML += card;
+  });
+}
