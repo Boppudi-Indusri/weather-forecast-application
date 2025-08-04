@@ -52,3 +52,17 @@ function getWeatherByLocation() {
     }
   );
 }
+
+// Display current weather
+function displayWeather(data) {
+  const icon = data.weather[0].icon;
+  const html = `
+    <h2 class="text-xl font-semibold">${data.name}, ${data.sys.country}</h2>
+    <img class="mx-auto" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${data.weather[0].description}">
+    <p class="text-lg">${data.main.temp}°C</p>
+    <p class="capitalize">${data.weather[0].description}</p>
+    <p>Humidity: ${data.main.humidity}%</p>
+    <p>Wind: ${data.wind.speed} m/s</p>
+  `;
+  weatherInfo.innerHTML = html;
+}
