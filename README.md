@@ -63,6 +63,10 @@ Ensure your API key is valid and not expired
 
 Geolocation feature may require browser permission
 
+Screenshots:
+![alt text](image.png)
+
+
 ![alt text](image-1.png)
 
 Author : Boppudi Indu Sri
