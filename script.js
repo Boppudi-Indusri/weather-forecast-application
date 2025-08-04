@@ -1,0 +1,1 @@
+const API_KEY = "3d274ddf1782a01217dbc77e83763990"; // Replace with your OpenWeatherMap API key
